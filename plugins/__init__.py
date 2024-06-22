@@ -20,6 +20,10 @@ class BaseClient:
         system_prompt: str,
         context: list[dict],
     ) -> tuple[str, bool]:
+        """Fetches the LLM's response. Returns a tuple containing the response text and a boolean indicating if the request was successful.
+
+        If it was not successful, response should be an error message
+        """
         pass
 
 

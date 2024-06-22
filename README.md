@@ -4,7 +4,7 @@
 
 # LLMCord - An LLM client as a discord bot
 
-This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemma from Discord
+This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Discord
 
 ## Installation
 
@@ -28,9 +28,10 @@ default_model = "llama3-70b"
 base_url = "https://api.groq.com/openai/"
 model = "llama3-70b-8192"
 token = "API_TOKEN_HERE"
+client = "OpenAIClient"
 ```
 
-**NOTE** I am using Groq AI here as an example however LLMCord will work with any OpenAI compatible API
+**NOTE** I am using Groq AI here as an example so I have selected the `OpenAIClient` due to it's API being compatible with OpenAI however LLMCord also includes a Google Gemini 1.5 client that you can use as `GeminiClient`
 
 ### Explanation of config
 
@@ -45,6 +46,8 @@ For each model you wish to make create it as a seperate table with a display nam
 
 `token` - API token for API, **REQUIRED IF NEEDED BY API**
 
+`client` - Which Client to use to send the request. Defaults to OpenAI if none is provided
+
 ### Then finally run
 
 ```bash
@@ -53,13 +56,26 @@ $ python -m llmcord
 
 Now you should be able to use LLMCord in any servers you have invited it to.
 
+## Plugins/Custom Clients
+
+You are able to make your own API clients by creating a python script in the `plugins/` folder. Simply create a class that inherits from `plugins.BaseClient` and implement
+the `get_response` method. Make sure it is a coroutine. In order to access the API use the `aiohttp` library as it is already installed and used by LLMCord.
+
+Look in the plugins folder for examples of custom clients
+
 ## Changelog
 
-No updates yet :|
+### 1.1.0
+
+- Added support for custom clients
+
+- Included `OpenAIClient` and `GeminiClient` by default
+
+- Changed `/list` to now show every model on a different line
 
 ## Roadmap
 
-- [ ] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
+- [x] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
 
 - [ ] File uploads
 
