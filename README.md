@@ -73,6 +73,8 @@ Look in the plugins folder for examples of custom clients
 
 - Changed `/list` to now show every model on a different line
 
+- Added custom logger
+
 ## Roadmap
 
 - [x] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
