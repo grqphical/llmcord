@@ -1,11 +1,12 @@
 import aiohttp
 import json
-import os
-import urllib.parse as urlparse
 from .config import Config
+from .context import Context
 
 
-async def send_query(model: str, query: str, config: Config) -> tuple[str, bool]:
+async def send_query(
+    model: str, query: str, config: Config, context: Context, channel_id: str
+) -> tuple[str, bool]:
     """
     Sends a query to the AI model for completion and returns the AI's response.
 
@@ -21,6 +22,12 @@ async def send_query(model: str, query: str, config: Config) -> tuple[str, bool]
     model, base_url, token = config.get_model_params(model)
     url = base_url + "v1/chat/completions"
     async with aiohttp.ClientSession(json_serialize=json.dumps) as session:
+        messages = [
+            {"role": "system", "content": config.system_prompt},
+        ]
+        messages += context.get_context(channel_id)
+        messages += [{"role": "user", "content": query}]
+
         async with session.post(
             url,
             headers={
@@ -29,15 +36,12 @@ async def send_query(model: str, query: str, config: Config) -> tuple[str, bool]
             },
             json={
                 "model": model,
-                "messages": [
-                    {"role": "system", "content": config.system_prompt},
-                    {"role": "user", "content": query},
-                ],
+                "messages": messages,
                 "stream": False,
             },
         ) as response:
             if not response.ok:
-                return "ERROR: " + response.text(), False
+                return "ERROR: " + await response.text(), False
 
             decoded_response = await response.json()
             ai_response = decoded_response["choices"][0]["message"]["content"]

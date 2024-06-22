@@ -6,6 +6,7 @@ from .ai_client import send_query
 from .embeds import *
 from .config import Config
 from .views import ModelsListView
+from .context import Context
 
 load_dotenv()
 
@@ -13,6 +14,7 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
+context = Context()
 
 
 @client.event
@@ -49,9 +51,15 @@ async def ask(
     Raises:
     - None
     """
-    response, ok = await send_query(model.value, query, config)
+    response, ok = await send_query(
+        model.value, query, config, context, interaction.channel_id
+    )
     if not ok:
         await interaction.response.send_message(embed=error_embed(response))
+
+    context.add_context_message(query, "user", interaction.channel_id)
+    context.add_context_message(response, "assistant", interaction.channel_id)
+
     await interaction.response.send_message(
         embed=ai_response_embed(model.name, response)
     )
