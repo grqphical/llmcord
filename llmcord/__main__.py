@@ -25,6 +25,7 @@ if config.default_model == None:
     exit(1)
 
 if config.system_prompt == None:
+    logger.warning("No system prompt has been setup. It will be left empty")
     config.system_prompt = ""
 
 

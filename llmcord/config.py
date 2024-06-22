@@ -12,7 +12,7 @@ class Config:
             config = tomllib.load(f)
 
         self.models = {}
-        self.system_prompt = config["system_prompt"]
+        self.system_prompt = config.get("system_prompt")
         self.default_model = config.get("default_model")
 
         for name, model in config["models"].items():
