@@ -35,7 +35,23 @@ async def on_ready():
 async def ask(
     interaction: discord.Interaction, model: app_commands.Choice[str], query: str
 ):
-    response = await send_query(model.value, query, config)
+    """
+    Ask a query to a LLM (Language Model). This function uses the models defined in the llmcord.toml file.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+    - model: The chosen model for the query.
+    - query: The query to ask the LLM.
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
+    response, ok = await send_query(model.value, query, config)
+    if not ok:
+        await interaction.response.send_message(embed=error_embed(response))
     await interaction.response.send_message(
         embed=ai_response_embed(model.name, response)
     )
