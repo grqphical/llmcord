@@ -13,7 +13,7 @@ class BaseClient:
         cls.plugins[cls.__name__] = cls
 
     async def get_response(
-        model: dict,
+        model: str,
         query: str,
         base_url: str,
         token: str,
