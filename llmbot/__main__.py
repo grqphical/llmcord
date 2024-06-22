@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from .ai_client import send_query
 from .embeds import *
 from .config import Config
+from .views import ModelsListView
 
 load_dotenv()
 
@@ -42,7 +43,14 @@ async def ask(
 
 @tree.command(name="list", description="Lists all defined models")
 async def list(interaction: discord.Interaction):
-    pass
+    models = config.get_models()
+    if len(models) <= 8:
+        await interaction.response.send_message(embed=model_list_embed(models, 1))
+    else:
+        view = ModelsListView(models)
+        await interaction.response.send_message(
+            embed=view.get_current_page(), view=view
+        )
 
 
 client.run(os.getenv("DISCORD_TOKEN"))

@@ -23,3 +23,10 @@ class Config:
             result.append(app_commands.Choice(name=name, value=name))
 
         return result
+
+    def get_models(self) -> list[tuple[str, str]]:
+        result = []
+        for name, model in self.models.items():
+            result.append((name, model))
+
+        return result
