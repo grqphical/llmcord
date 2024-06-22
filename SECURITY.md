@@ -7,13 +7,13 @@
 | latest  | :white_check_mark: |
 | 1.2.0   | :white_check_mark: |
 | 1.1.0   | :white_check_mark: |
-| 1.0.0   | :white_check_mark: |
+| 1.0.0   | :x: |
 
 ## Reporting a Vulnerability
 
 To report a vulnerability create an issue with the tag `security` and include the version/commit hash of LLMCord, a brief description of the issue, a way to reproduce the issue, and any possible fixes you may have
 
-### Template:
+## Template:
 
 ## Version 1.x.x
 
