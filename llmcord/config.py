@@ -1,5 +1,5 @@
 import tomllib
-from discord import app_commands
+import logging
 
 
 class Config:
@@ -13,12 +13,14 @@ class Config:
 
         self.models = {}
         self.system_prompt = config["system_prompt"]
-        self.default_model = config["default_model"]
+        self.default_model = config.get("default_model")
 
         for name, model in config["models"].items():
             if "client" not in model.keys():
                 model["client"] = None
             self.models[name] = model
+
+        logging.getLogger("llmcord").info("Loaded config")
 
     def get_model_params(self, name: str) -> tuple[str, str, str, str]:
         """

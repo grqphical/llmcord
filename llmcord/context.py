@@ -1,5 +1,6 @@
 import pickle
 import os
+import logging
 
 CONTEXT_FILE = "context.pkl"
 
@@ -27,9 +28,11 @@ class Context:
         """
         if not os.path.exists(CONTEXT_FILE) or os.path.getsize(CONTEXT_FILE) == 0:
             self.context = {}
+            logging.getLogger("llmcord").info("Created context")
         else:
             with open(CONTEXT_FILE, "rb") as f:
                 self.context = pickle.load(f)
+                logging.getLogger("llmcord").info("Loaded context")
 
     def add_context_message(self, message: str, role: str, channel_id: str):
         """

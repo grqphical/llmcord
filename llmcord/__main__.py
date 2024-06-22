@@ -7,14 +7,9 @@ from .embeds import *
 from .config import Config
 from .views import ModelsListView, ContextListView
 from .context import Context
+from .logging import logger
 
 """Represents an error that can occur while the configuration is being loaded"""
-
-
-class ConfigError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
 
 
 load_dotenv()
@@ -26,7 +21,8 @@ config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
 context = Context()
 
 if config.default_model == None:
-    raise ConfigError("No default model has been set. Set it with `default_model`")
+    logger.critical("No default model configured")
+    exit(1)
 
 if config.system_prompt == None:
     config.system_prompt = ""
@@ -64,7 +60,7 @@ async def on_ready():
     - None
     """
     await tree.sync()
-    print(f"Logged in as {client.user}")
+    logger.info(f"Logged in as {client.user}")
     await client.change_presence(
         activity=discord.Activity(
             type=discord.ActivityType.watching,
@@ -123,12 +119,15 @@ async def ask(
         model, query, config, context, interaction.channel_id
     )
     if not ok:
+        logger.error(f"Failed to send query to {model}")
         await interaction.followup.send(embed=error_embed(response))
 
     context.add_context_message(query, "user", interaction.channel_id)
     context.add_context_message(response, "assistant", interaction.channel_id)
 
     await interaction.followup.send(embed=ai_response_embed(model, response))
+
+    logger.info(f"Sent query to {model}")
 
 
 @tree.command(name="list", description="Lists all defined models")
@@ -174,6 +173,8 @@ async def clear(interaction: discord.Interaction):
         embed=info_embed("Cleared this channel's context")
     )
 
+    logger.info("Cleared context")
+
 
 @tree.command(name="context", description="Shows the current channels's context")
 async def context_list(interaction: discord.Interaction):
@@ -199,4 +200,10 @@ async def context_list(interaction: discord.Interaction):
         )
 
 
-client.run(os.getenv("DISCORD_TOKEN"))
+@tree.command(name="reload", description="Reloads the configuration file")
+async def reload(interaction: discord.Interaction):
+    config = Config("llmcord.toml")
+    await interaction.response.send_message(embed=info_embed("Reloaded config"))
+
+
+client.run(os.getenv("DISCORD_TOKEN"), log_handler=None)
