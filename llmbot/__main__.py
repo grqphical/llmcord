@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from .ai_client import send_query
 from .embeds import *
 from .config import Config
-from .views import ModelsListView
+from .views import ModelsListView, ContextListView
 from .context import Context
 
 load_dotenv()
@@ -92,9 +92,29 @@ async def ask(
 async def list(interaction: discord.Interaction):
     models = config.get_models()
     if len(models) <= 8:
-        await interaction.response.send_message(embed=model_list_embed(models, 1))
+        await interaction.response.send_message(embed=model_list_embed(models, 0))
     else:
         view = ModelsListView(models)
+        await interaction.response.send_message(
+            embed=view.get_current_page(), view=view
+        )
+
+
+@tree.command(name="clearcontext", description="Clears this channels context messages")
+async def clear(interaction: discord.Interaction):
+    context.clear(interaction.channel_id)
+    await interaction.response.send_message(
+        embed=info_embed("Cleared this channel's context")
+    )
+
+
+@tree.command(name="context", description="Shows the current channels's context")
+async def context_list(interaction: discord.Interaction):
+    ctx = context.get_context(interaction.channel_id)
+    if len(ctx) <= 8:
+        await interaction.response.send_message(embed=context_list_embed(ctx, 0))
+    else:
+        view = ContextListView(ctx)
         await interaction.response.send_message(
             embed=view.get_current_page(), view=view
         )

@@ -26,3 +26,8 @@ class Context:
         if channel_id not in self.context.keys():
             return []
         return self.context[channel_id]
+
+    def clear(self, channel_id: str):
+        self.context[channel_id] = []
+        with open(CONTEXT_FILE, "wb") as f:
+            pickle.dump(self.context, f)
