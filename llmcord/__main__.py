@@ -8,6 +8,15 @@ from .config import Config
 from .views import ModelsListView, ContextListView
 from .context import Context
 
+"""Represents an error that can occur while the configuration is being loaded"""
+
+
+class ConfigError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+
 load_dotenv()
 
 intents = discord.Intents.default()
@@ -16,11 +25,11 @@ tree = app_commands.CommandTree(client)
 config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
 context = Context()
 
+if config.default_model == None:
+    raise ConfigError("No default model has been set. Set it with `default_model`")
 
-class ConfigError(Exception):
-    def __init__(self, message):
-        self.message = message
-        super().__init__(self.message)
+if config.system_prompt == None:
+    config.system_prompt = ""
 
 
 def get_model_real_name(display_name: str) -> str:
@@ -38,10 +47,6 @@ def get_model_real_name(display_name: str) -> str:
     """
     model, _, _ = config.get_model_params(display_name)
     return model
-
-
-if config.default_model == None:
-    raise ConfigError("No default model has been set. Set it with `default_model`")
 
 
 @client.event
