@@ -24,6 +24,18 @@ class ConfigError(Exception):
 
 
 def get_model_real_name(display_name: str) -> str:
+    """
+    Get the real name of a model based on its display name.
+
+    Parameters:
+    - display_name: The display name of the model.
+
+    Returns:
+    - The real name of the model.
+
+    Raises:
+    - None
+    """
     model, _, _ = config.get_model_params(display_name)
     return model
 
@@ -34,6 +46,18 @@ if config.default_model == None:
 
 @client.event
 async def on_ready():
+    """
+    Event handler for when the bot is ready.
+
+    Parameters:
+    - None
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
     await tree.sync()
     print(f"Logged in as {client.user}")
     await client.change_presence(
@@ -45,6 +69,19 @@ async def on_ready():
 
 
 async def model_autocomplete(interaction: discord.Interaction, current: str):
+    """
+    Autocomplete function for the 'model' parameter in the 'ask' command.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+    - current: The current input for autocomplete.
+
+    Returns:
+    - A list of app_commands.Choice objects for autocomplete.
+
+    Raises:
+    - None
+    """
     choices = config.get_models()
     return [
         app_commands.Choice(name=choice, value=choice)
@@ -90,6 +127,18 @@ async def ask(
 
 @tree.command(name="list", description="Lists all defined models")
 async def list(interaction: discord.Interaction):
+    """
+    Command to list all defined models.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
     models = config.get_models()
     if len(models) <= 8:
         await interaction.response.send_message(embed=model_list_embed(models, 0))
@@ -102,6 +151,18 @@ async def list(interaction: discord.Interaction):
 
 @tree.command(name="clearcontext", description="Clears this channels context messages")
 async def clear(interaction: discord.Interaction):
+    """
+    Command to clear the context messages for the current channel.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
     context.clear(interaction.channel_id)
     await interaction.response.send_message(
         embed=info_embed("Cleared this channel's context")
@@ -110,6 +171,18 @@ async def clear(interaction: discord.Interaction):
 
 @tree.command(name="context", description="Shows the current channels's context")
 async def context_list(interaction: discord.Interaction):
+    """
+    Command to show the current channel's context messages.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
     ctx = context.get_context(interaction.channel_id)
     if len(ctx) <= 8:
         await interaction.response.send_message(embed=context_list_embed(ctx, 0))
