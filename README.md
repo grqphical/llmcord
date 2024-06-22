@@ -46,7 +46,7 @@ For each model you wish to make create it as a seperate table with a display nam
 
 `token` - API token for API, **REQUIRED IF NEEDED BY API**
 
-`client` - Which Client to use to send the request. Defaults to OpenAI if none is provided
+`client` - Which Client to use to send the request. **REQUIRED**
 
 ### Then finally run
 

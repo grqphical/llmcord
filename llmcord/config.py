@@ -16,8 +16,6 @@ class Config:
         self.default_model = config.get("default_model")
 
         for name, model in config["models"].items():
-            if "client" not in model.keys():
-                model["client"] = None
             self.models[name] = model
 
         logging.getLogger("llmcord").info("Loaded config")
@@ -33,7 +31,12 @@ class Config:
             tuple[str, str, str]: A tuple containing the model, base URL, and token.
         """
         model = self.models[name]
-        return model["model"], model["base_url"], model["token"], model["client"]
+        return (
+            model.get("model"),
+            model.get("base_url"),
+            model.get("token"),
+            model.get("client", None),
+        )
 
     def get_models(self) -> list[tuple[str, str]]:
         """

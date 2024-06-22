@@ -19,17 +19,8 @@ async def send_query(
         bool: Whether or not the request succeeded
     """
     model, base_url, token, client = config.get_model_params(model)
-    # Default to OpenAI client if none was defined
     if client == None:
-        response, ok = await BaseClient.plugins["OpenAIClient"].get_response(
-            model,
-            query,
-            base_url,
-            token,
-            config.system_prompt,
-            context.get_context(channel_id),
-        )
-        return response, ok
+        return "ERROR: No client has been configured for this model", False
 
     client = BaseClient.plugins[client]
     response, ok = await client.get_response(

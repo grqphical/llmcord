@@ -65,9 +65,7 @@ class Context:
         Returns:
             list[dict]: A list of dictionaries representing the context messages.
         """
-        if channel_id not in self.context.keys():
-            return []
-        return self.context[channel_id]
+        return self.context.get(channel_id, [])
 
     def clear(self, channel_id: str):
         """
