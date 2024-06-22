@@ -11,7 +11,7 @@ load_dotenv()
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
-config = Config(os.path.join(os.getcwd(), "llmbot.toml"))
+config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
 
 
 @client.event
@@ -27,8 +27,8 @@ async def on_ready():
 
 
 @tree.command(
-    name="groq",
-    description="Ask a LLM from groq a query. Includes LLaMA3, Mixtral 8x7b, and Gemma 7b",
+    name="ask",
+    description="Ask a LLM a query. Uses the models you have defined in your llmcord.toml file",
 )
 @app_commands.choices(model=config.get_models_choices())
 async def ask(
@@ -38,6 +38,11 @@ async def ask(
     await interaction.response.send_message(
         embed=ai_response_embed(model.name, response)
     )
+
+
+@tree.command(name="list", description="Lists all defined models")
+async def list(interaction: discord.Interaction):
+    pass
 
 
 client.run(os.getenv("DISCORD_TOKEN"))

@@ -15,7 +15,7 @@ class Config:
 
     def get_model_params(self, name: str) -> tuple[str, str, str]:
         model = self.models[name]
-        return model["model"], model["base_url"], model["token_name"]
+        return model["model"], model["base_url"], model["token"]
 
     def get_models_choices(self) -> list[app_commands.Choice]:
         result = []

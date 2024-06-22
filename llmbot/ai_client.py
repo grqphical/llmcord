@@ -6,14 +6,14 @@ from .config import Config
 
 
 async def send_query(model: str, query: str, config: Config) -> str:
-    model, base_url, token_name = config.get_model_params(model)
+    model, base_url, token = config.get_model_params(model)
     url = base_url + "v1/chat/completions"
     async with aiohttp.ClientSession(json_serialize=json.dumps) as session:
         async with session.post(
             url,
             headers={
                 "Content-Type": "application/json",
-                "Authorization": f"Bearer {os.getenv(token_name)}",
+                "Authorization": f"Bearer {token}",
             },
             json={
                 "model": model,
