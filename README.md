@@ -31,11 +31,14 @@ token = "API_TOKEN_HERE"
 ### Explanation of config
 
 `system_prompt` - Allows you to control the system prompt of the AI
+
 `default_model` - Specifies the default model **REQUIRED**
 
 For each model you wish to make create it as a seperate table with a display name. In this case I chose `llama3-70b`.
 `base_url` - Base URL for the API **REQUIRED**
+
 `model` - Which model to use **REQUIRED**
+
 `token` - API token for API, **REQUIRED IF NEEDED BY API**
 
 ### Then finally run
