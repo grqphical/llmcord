@@ -118,16 +118,17 @@ async def ask(
     Raises:
     - None
     """
+    await interaction.response.defer()
     response, ok = await send_query(
         model, query, config, context, interaction.channel_id
     )
     if not ok:
-        await interaction.response.send_message(embed=error_embed(response))
+        await interaction.followup.send(embed=error_embed(response))
 
     context.add_context_message(query, "user", interaction.channel_id)
     context.add_context_message(response, "assistant", interaction.channel_id)
 
-    await interaction.response.send_message(embed=ai_response_embed(model, response))
+    await interaction.followup.send(embed=ai_response_embed(model, response))
 
 
 @tree.command(name="list", description="Lists all defined models")

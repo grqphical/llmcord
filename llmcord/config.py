@@ -16,9 +16,11 @@ class Config:
         self.default_model = config["default_model"]
 
         for name, model in config["models"].items():
+            if "client" not in model.keys():
+                model["client"] = None
             self.models[name] = model
 
-    def get_model_params(self, name: str) -> tuple[str, str, str]:
+    def get_model_params(self, name: str) -> tuple[str, str, str, str]:
         """
         Retrieves the model parameters for the specified model name.
 
@@ -29,7 +31,7 @@ class Config:
             tuple[str, str, str]: A tuple containing the model, base URL, and token.
         """
         model = self.models[name]
-        return model["model"], model["base_url"], model["token"]
+        return model["model"], model["base_url"], model["token"], model["client"]
 
     def get_models(self) -> list[tuple[str, str]]:
         """
