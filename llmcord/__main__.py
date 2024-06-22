@@ -202,6 +202,7 @@ async def context_list(interaction: discord.Interaction):
 
 @tree.command(name="reload", description="Reloads the configuration file")
 async def reload(interaction: discord.Interaction):
+    global config
     config = Config("llmcord.toml")
     await interaction.response.send_message(embed=info_embed("Reloaded config"))
 
