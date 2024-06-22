@@ -1,21 +1,26 @@
 import aiohttp
-import os
 import json
+import os
+import urllib.parse as urlparse
+from .config import Config
 
-SYSTEM_PROMPT = """You are designed to help people on the chat platform Discord. Format your messages using markdown if needed."""
 
-
-async def send_query(model: str, query: str) -> str:
+async def send_query(model: str, query: str, config: Config) -> str:
+    model, base_url, token_name = config.get_model_params(model)
+    url = base_url + "v1/chat/completions"
     async with aiohttp.ClientSession(json_serialize=json.dumps) as session:
         async with session.post(
-            "https://api.groq.com/openai/v1/chat/completions",
+            url,
             headers={
                 "Content-Type": "application/json",
-                "Authorization": f'Bearer {os.getenv("GROQ_TOKEN")}',
+                "Authorization": f"Bearer {os.getenv(token_name)}",
             },
             json={
                 "model": model,
-                "messages": [{"role": "system", "content": SYSTEM_PROMPT}],
+                "messages": [
+                    {"role": "system", "content": config.system_prompt},
+                    {"role": "user", "content": query},
+                ],
                 "stream": False,
             },
         ) as response:

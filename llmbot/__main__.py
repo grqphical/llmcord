@@ -4,12 +4,14 @@ import os
 from dotenv import load_dotenv
 from .ai_client import send_query
 from .embeds import *
+from .config import Config
 
 load_dotenv()
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
+config = Config(os.path.join(os.getcwd(), "llmbot.toml"))
 
 
 @client.event
@@ -24,19 +26,15 @@ async def on_ready():
     )
 
 
-@tree.command(name="ask", description="Ask a LLM a query")
-@app_commands.choices(
-    model=[
-        app_commands.Choice(name="LLaMA3 70b", value="llama3-70b-8192"),
-        app_commands.Choice(name="LLaMA3 8b", value="llama3-8b-8192"),
-        app_commands.Choice(name="Mixtral 8x7b", value="mixtral-8x7b-32768"),
-        app_commands.Choice(name="Gemma 7b", value="gemma-7b-it"),
-    ]
+@tree.command(
+    name="groq",
+    description="Ask a LLM from groq a query. Includes LLaMA3, Mixtral 8x7b, and Gemma 7b",
 )
+@app_commands.choices(model=config.get_models_choices())
 async def ask(
     interaction: discord.Interaction, model: app_commands.Choice[str], query: str
 ):
-    response = await send_query(model.value, query)
+    response = await send_query(model.value, query, config)
     await interaction.response.send_message(
         embed=ai_response_embed(model.name, response)
     )
