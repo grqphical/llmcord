@@ -15,7 +15,7 @@ To report a vulnerability create an issue with the tag `security` and include th
 
 ## Template:
 
-## Version 1.x.x
+## Version 1.x.x or Commit 1a417d5
 
 ## Description
 
