@@ -13,6 +13,8 @@
 
 To report a vulnerability create an issue with the tag `security` and include the version/commit hash of LLMCord, a brief description of the issue, a way to reproduce the issue, and any possible fixes you may have
 
+You also can create a security report under the security tab with the same information
+
 ## Template:
 
 ## Version 1.x.x or Commit 1a417d5
