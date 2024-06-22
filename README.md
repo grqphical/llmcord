@@ -65,6 +65,10 @@ Look in the plugins folder for examples of custom clients
 
 ## Changelog
 
+### 1.2.0
+
+- Added custom logger
+
 ### 1.1.0
 
 - Added support for custom clients
@@ -72,8 +76,6 @@ Look in the plugins folder for examples of custom clients
 - Included `OpenAIClient` and `GeminiClient` by default
 
 - Changed `/list` to now show every model on a different line
-
-- Added custom logger
 
 ## Roadmap
 
