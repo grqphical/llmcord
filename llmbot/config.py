@@ -13,6 +13,7 @@ class Config:
 
         self.models = {}
         self.system_prompt = config["system_prompt"]
+        self.default_model = config["default_model"]
 
         for name, model in config["models"].items():
             self.models[name] = model
@@ -29,19 +30,6 @@ class Config:
         """
         model = self.models[name]
         return model["model"], model["base_url"], model["token"]
-
-    def get_models_choices(self) -> list[app_commands.Choice]:
-        """
-        Retrieves the available model choices as a list of app_commands.Choice objects to be used in the Discord slash command.
-
-        Returns:
-            list[app_commands.Choice]: A list of app_commands.Choice objects representing the available model choices.
-        """
-        result = []
-        for name in self.models.keys():
-            result.append(app_commands.Choice(name=name, value=name))
-
-        return result
 
     def get_models(self) -> list[tuple[str, str]]:
         """

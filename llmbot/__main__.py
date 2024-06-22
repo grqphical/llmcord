@@ -17,6 +17,21 @@ config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
 context = Context()
 
 
+class ConfigError(Exception):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
+
+
+def get_model_real_name(display_name: str) -> str:
+    model, _, _ = config.get_model_params(display_name)
+    return model
+
+
+if config.default_model == None:
+    raise ConfigError("No default model has been set. Set it with `default_model`")
+
+
 @client.event
 async def on_ready():
     await tree.sync()
@@ -29,13 +44,23 @@ async def on_ready():
     )
 
 
+async def model_autocomplete(interaction: discord.Interaction, current: str):
+    choices = config.get_models()
+    return [
+        app_commands.Choice(name=choice, value=choice)
+        for choice, _ in choices
+        if current.lower() in choice.lower()
+    ]
+
+
 @tree.command(
     name="ask",
     description="Ask a LLM a query. Uses the models you have defined in your llmcord.toml file",
 )
-@app_commands.choices(model=config.get_models_choices())
+@app_commands.describe(model="Choose a LLM")
+@app_commands.autocomplete(model=model_autocomplete)
 async def ask(
-    interaction: discord.Interaction, model: app_commands.Choice[str], query: str
+    interaction: discord.Interaction, query: str, model: str = config.default_model
 ):
     """
     Ask a query to a LLM (Language Model). This function uses the models defined in the llmcord.toml file.
@@ -52,7 +77,7 @@ async def ask(
     - None
     """
     response, ok = await send_query(
-        model.value, query, config, context, interaction.channel_id
+        model, query, config, context, interaction.channel_id
     )
     if not ok:
         await interaction.response.send_message(embed=error_embed(response))
@@ -60,9 +85,7 @@ async def ask(
     context.add_context_message(query, "user", interaction.channel_id)
     context.add_context_message(response, "assistant", interaction.channel_id)
 
-    await interaction.response.send_message(
-        embed=ai_response_embed(model.name, response)
-    )
+    await interaction.response.send_message(embed=ai_response_embed(model, response))
 
 
 @tree.command(name="list", description="Lists all defined models")
