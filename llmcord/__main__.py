@@ -61,12 +61,6 @@ async def on_ready():
     """
     await tree.sync()
     logger.info(f"Logged in as {client.user}")
-    await client.change_presence(
-        activity=discord.Activity(
-            type=discord.ActivityType.watching,
-            name="Aritifical Intelligence Developments",
-        )
-    )
 
 
 async def model_autocomplete(interaction: discord.Interaction, current: str):
@@ -202,6 +196,18 @@ async def context_list(interaction: discord.Interaction):
 
 @tree.command(name="reload", description="Reloads the configuration file")
 async def reload(interaction: discord.Interaction):
+    """
+    Command to reload the configuration file.
+
+    Parameters:
+    - interaction: The Discord interaction object.
+
+    Returns:
+    - None
+
+    Raises:
+    - None
+    """
     global config
     config = Config("llmcord.toml")
     await interaction.response.send_message(embed=info_embed("Reloaded config"))
