@@ -2,26 +2,28 @@ import tomllib
 import logging
 import os
 
+CONFIG_FILE = "llmcord.toml"
+
 
 class Config:
     """
     Represents the configuration settings for the llmbot application.
     """
 
-    def __init__(self, file: str) -> None:
-        if not os.path.exists(file):
+    def __init__(self) -> None:
+        if not os.path.exists(CONFIG_FILE):
             logging.getLogger("llmcord").critical(
                 "No config file found. Make sure you have a non-empty file called 'llmcord.toml' in the same directory as the scripts"
             )
             exit(1)
-        with open(file, "rb") as f:
+        with open(CONFIG_FILE, "rb") as f:
             config = tomllib.load(f)
 
         self.models = {}
         self.system_prompt = config.get("system_prompt")
         self.default_model = config.get("default_model")
 
-        for name, model in config["models"].items():
+        for name, model in config.get("models", {}).items():
             self.models[name] = model
 
         if self.default_model not in self.models.keys():
@@ -38,7 +40,7 @@ class Config:
             name (str): The name of the model.
 
         Returns:
-            tuple[str, str, str]: A tuple containing the model, base URL, and token.
+            tuple[str, str, str, str]: A tuple containing the model, base URL, token and client.
         """
         model = self.models.get(name, None)
 
@@ -57,7 +59,7 @@ class Config:
         Retrieves the available models as a list of tuples.
 
         Returns:
-            list[tuple[str, str]]: A list of tuples containing the model display name and model real name.
+            list[tuple[str, dict]]: A list of tuples containing the model display name and model data.
         """
         result = []
         for name, model in self.models.items():

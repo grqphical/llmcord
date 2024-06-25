@@ -38,7 +38,7 @@ $ pip install -r requirements.txt
 
 I tried to compile these Python scripts into an executable however it wouldn't work. If anyone can get one working please create an issue with the method you used.
 
-This also ensures that it works across all platforms without needing me to compile versions for every platform.
+Not having an executable also ensures that it works across all platforms without needing me to compile versions for every platform.
 
 ## Usage
 
