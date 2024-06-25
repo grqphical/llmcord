@@ -1,0 +1,11 @@
+venv
+
+README.md
+SECURITY.md
+llmcord_logo.png
+
+__pycache__/
+*.pyc
+*.pyo
+
+Dockerfile

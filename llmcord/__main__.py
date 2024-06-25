@@ -9,15 +9,14 @@ from .views import ModelsListView, ContextListView
 from .context import Context
 from .logging import logger
 
-"""Represents an error that can occur while the configuration is being loaded"""
-
+CONFIG_FILE = "llmcord.toml"
 
 load_dotenv()
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
-config = Config(os.path.join(os.getcwd(), "llmcord.toml"))
+config = Config(CONFIG_FILE)
 context = Context()
 
 if config.default_model == None:
@@ -116,6 +115,7 @@ async def ask(
     if not ok:
         logger.error(f"Failed to send query to {model}")
         await interaction.followup.send(embed=error_embed(response))
+        return
 
     context.add_context_message(query, "user", interaction.channel_id)
     context.add_context_message(response, "assistant", interaction.channel_id)
@@ -210,7 +210,7 @@ async def reload(interaction: discord.Interaction):
     - None
     """
     global config
-    config = Config("llmcord.toml")
+    config = Config(CONFIG_FILE)
     await interaction.response.send_message(embed=info_embed("Reloaded config"))
 
 

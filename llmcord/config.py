@@ -1,5 +1,6 @@
 import tomllib
 import logging
+import os
 
 
 class Config:
@@ -8,6 +9,11 @@ class Config:
     """
 
     def __init__(self, file: str) -> None:
+        if not os.path.exists(file):
+            logging.getLogger("llmcord").critical(
+                "No config file found. Make sure you have a non-empty file called 'llmcord.toml' in the same directory as the scripts"
+            )
+            exit(1)
         with open(file, "rb") as f:
             config = tomllib.load(f)
 
@@ -17,6 +23,10 @@ class Config:
 
         for name, model in config["models"].items():
             self.models[name] = model
+
+        if self.default_model not in self.models.keys():
+            logging.getLogger("llmcord").critical("Default model does not exist")
+            exit(1)
 
         logging.getLogger("llmcord").info("Loaded config")
 
@@ -30,7 +40,11 @@ class Config:
         Returns:
             tuple[str, str, str]: A tuple containing the model, base URL, and token.
         """
-        model = self.models[name]
+        model = self.models.get(name, None)
+
+        if model == None:
+            return (None, None, None, None)
+
         return (
             model.get("model"),
             model.get("base_url"),

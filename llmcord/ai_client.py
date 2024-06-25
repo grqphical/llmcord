@@ -18,13 +18,19 @@ async def send_query(
         str: The AI's response to the query.
         bool: Whether or not the request succeeded
     """
-    model, base_url, token, client = config.get_model_params(model)
+    model_data, base_url, token, client = config.get_model_params(model)
+    if model_data == None:
+        return (
+            f"ERROR: Model '{model}' not found. Make sure you have defined it in 'llmcord.toml'",
+            False,
+        )
+
     if client == None:
         return "ERROR: No client has been configured for this model", False
 
     client = BaseClient.plugins[client]
     response, ok = await client.get_response(
-        model,
+        model_data,
         query,
         base_url,
         token,

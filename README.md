@@ -8,11 +8,37 @@ This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Dis
 
 ## Installation
 
-Clone this repo, create a virtualenv, and run
+1. Clone this repo
+
+```bash
+$ git clone https://github.com/grqphical/LLMCord.git
+```
+
+2. Create a virtual environment
+
+```bash
+$ python -m venv venv
+```
+
+3. Activate the virtual environment
+
+```bash
+$ ./venv/Scripts/activate
+```
+
+**NOTE** On linux the path will be `./venv/bin/activate`
+
+4. Install dependencies
 
 ```bash
 $ pip install -r requirements.txt
 ```
+
+### Why no executable to download?
+
+I tried to compile these Python scripts into an executable however it wouldn't work. If anyone can get one working please create an issue with the method you used.
+
+This also ensures that it works across all platforms without needing me to compile versions for every platform.
 
 ## Usage
 
@@ -46,7 +72,7 @@ For each model you wish to make create it as a seperate table with a display nam
 
 `token` - API token for API, **REQUIRED IF NEEDED BY API**
 
-`client` - Which Client to use to send the request. **REQUIRED**
+`client` - Which Client to use to send the request. The two included clients are `OpenAIClient` and `GeminiClient`. **REQUIRED**
 
 ### Then finally run
 
@@ -65,6 +91,14 @@ Look in the plugins folder for examples of custom clients
 
 ## Changelog
 
+### 1.2.1
+
+- Fixed error handling with certain edge cases when loading the configuration
+
+- Added error handling when selecting an invalid/undefined model. Before it would just get stuck in an infinite loop
+
+- Improved documentation
+
 ### 1.2.0
 
 - Added custom logger
@@ -78,6 +112,8 @@ Look in the plugins folder for examples of custom clients
 - Changed `/list` to now show every model on a different line
 
 ## Roadmap
+
+I may or may not add these features later on so feel free to make a PR and implement these features.
 
 - [x] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
 

@@ -28,6 +28,8 @@ class Context:
         """
         if not os.path.exists(CONTEXT_FILE) or os.path.getsize(CONTEXT_FILE) == 0:
             self.context = {}
+            with open(CONTEXT_FILE, "xb") as f:
+                pass
             logging.getLogger("llmcord").info("Created context")
         else:
             with open(CONTEXT_FILE, "rb") as f:
