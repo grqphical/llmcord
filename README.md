@@ -84,7 +84,7 @@ Now you should be able to use LLMCord in any servers you have invited it to.
 
 ## Contributing
 
-See [CONTRIBUTING](https://github.com/grqphical/llmcord/blob/main/CONTRIBUTING)
+See [CONTRIBUTING.md](https://github.com/grqphical/llmcord/blob/main/CONTRIBUTING.md)
 
 ## Plugins/Custom Clients
 
