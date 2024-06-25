@@ -2,35 +2,16 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| latest  | :white_check_mark: |
-| 1.2.0   | :white_check_mark: |
-| 1.1.0   | :white_check_mark: |
-| 1.0.0   | :x: |
+I will always support the latest commit and the previous two versions
+
+| Version       | Supported          |
+| ------------- | ------------------ |
+| latest commit | :white_check_mark: |
+| 1.2.1         | :white_check_mark: |
+| 1.2.0         | :white_check_mark: |
+| 1.1.0         | :x:                |
+| 1.0.0         | :x:                |
 
 ## Reporting a Vulnerability
 
-To report a vulnerability create an issue with the tag `security` and include the version/commit hash of LLMCord, a brief description of the issue, a way to reproduce the issue, and any possible fixes you may have
-
-You also can create a security report under the security tab with the same information
-
-## Template:
-
-## Version 1.x.x or Commit 1a417d5
-
-## Description
-
-DESCRIPTION HERE
-
-## Screenshots/Videos
-
-SCREENSHOTS/MEDIA HERE
-
-## Reproduction Steps
-
-REPRODUCTION STEPS HERE
-
-## Possible Fixes
-
-POSSIBLE FIXES
+Create a security report under the security tab of the repo

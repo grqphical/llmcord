@@ -39,3 +39,37 @@ If you are asked to "rebase" your PR, they're saying that a lot of code has chan
 3. Make your changes
 
 4. Open a PR tagging the issue it's related to and stating all changes that have been made
+
+## Bug Reports
+
+## Supported Versions
+
+I will always support the latest commit and the previous two versions of LLMCord
+
+| Version       | Supported          |
+| ------------- | ------------------ |
+| latest commit | :white_check_mark: |
+| 1.2.1         | :white_check_mark: |
+| 1.2.0         | :white_check_mark: |
+| 1.1.0         | :x:                |
+| 1.0.0         | :x:                |
+
+Open an issue with the tag `bug` and make sure to include
+
+## Version 1.x.x or Commit HASH
+
+## Description
+
+DESCRIPTION HERE
+
+## Screenshots/Videos
+
+SCREENSHOTS/MEDIA HERE
+
+## Reproduction Steps
+
+REPRODUCTION STEPS HERE
+
+## Possible Fixes
+
+POSSIBLE FIXES

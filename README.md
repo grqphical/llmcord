@@ -82,6 +82,10 @@ $ python -m llmcord
 
 Now you should be able to use LLMCord in any servers you have invited it to.
 
+## Contributing
+
+See [CONTRIBUTING](https://github.com/grqphical/llmcord/blob/main/CONTRIBUTING)
+
 ## Plugins/Custom Clients
 
 You are able to make your own API clients by creating a python script in the `plugins/` folder. Simply create a class that inherits from `plugins.BaseClient` and implement
