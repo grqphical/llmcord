@@ -34,8 +34,7 @@ def model_list_embed(models: list[tuple[str, str]], page_num: int):
             title=f"Models Page {page_num}", color=discord.Color.blue()
         )
     for model in models:
-        embed.add_field(name=model[0], value=f"{model[1]["model"]} at \
-                        {model[1]["base_url"]}", inline=False)
+        embed.add_field(name=model[0], value=f"{model[1]["model"]} at {model[1]["base_url"]}", inline=False)
     return embed
 
 
