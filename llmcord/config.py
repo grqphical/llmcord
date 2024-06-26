@@ -1,3 +1,5 @@
+"""LLMCord"""
+
 import tomllib
 import logging
 import os
@@ -13,7 +15,8 @@ class Config:
     def __init__(self) -> None:
         if not os.path.exists(CONFIG_FILE):
             logging.getLogger("llmcord").critical(
-                "No config file found. Make sure you have a non-empty file called 'llmcord.toml' in the same directory as the scripts"
+                "No config file found. Make sure you have a non-empty file called 'llmcord.toml' \
+                    in the same directory as the scripts"
             )
             exit(1)
         with open(CONFIG_FILE, "rb") as f:
@@ -26,7 +29,7 @@ class Config:
         for name, model in config.get("models", {}).items():
             self.models[name] = model
 
-        if self.default_model not in self.models.keys():
+        if self.default_model not in self.models:
             logging.getLogger("llmcord").critical("Default model does not exist")
             exit(1)
 
@@ -44,7 +47,7 @@ class Config:
         """
         model = self.models.get(name, None)
 
-        if model == None:
+        if model is None:
             return (None, None, None, None)
 
         return (
@@ -59,7 +62,8 @@ class Config:
         Retrieves the available models as a list of tuples.
 
         Returns:
-            list[tuple[str, dict]]: A list of tuples containing the model display name and model data.
+            list[tuple[str, dict]]: A list of tuples containing the model display name and \
+                model data.
         """
         result = []
         for name, model in self.models.items():

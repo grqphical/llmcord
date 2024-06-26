@@ -3,3 +3,4 @@ __pycache__
 venv
 *.toml
 *.pkl
+.pytest_cache

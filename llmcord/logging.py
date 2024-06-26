@@ -1,3 +1,5 @@
+"""LLMCord"""
+
 import logging
 from llmcord import __version__
 
@@ -24,6 +26,8 @@ END = "\033[0m"
 
 
 class LoggingFormatter(logging.Formatter):
+    """Formatter for LLMCord's logging"""
+
     FORMATS = {
         logging.INFO: f"{YELLOW}%(asctime)s {CYAN}%(levelname)s:{YELLOW} %(message)s{END}",
         logging.WARNING: f"{YELLOW}%(asctime)s %(levelname)s: %(message)s{END}",

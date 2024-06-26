@@ -1,3 +1,4 @@
+"""LLMCord"""
 import discord
 
 
@@ -27,19 +28,20 @@ def error_embed(error_message: str):
 
 def model_list_embed(models: list[tuple[str, str]], page_num: int):
     if page_num == 0:
-        embed = discord.Embed(title=f"Models", color=discord.Color.blue())
+        embed = discord.Embed(title="Models", color=discord.Color.blue())
     else:
         embed = discord.Embed(
             title=f"Models Page {page_num}", color=discord.Color.blue()
         )
     for model in models:
-        embed.add_field(name=model[0], value=f"{model[1]["model"]} at {model[1]["base_url"]}", inline=False)
+        embed.add_field(name=model[0], value=f"{model[1]["model"]} at \
+                        {model[1]["base_url"]}", inline=False)
     return embed
 
 
 def context_list_embed(context: list[dict], page_num: int):
     if page_num == 0:
-        embed = discord.Embed(title=f"Context", color=discord.Color.blue())
+        embed = discord.Embed(title="Context", color=discord.Color.blue())
     else:
         embed = discord.Embed(
             title=f"Context Page {page_num}", color=discord.Color.blue()

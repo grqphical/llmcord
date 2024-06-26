@@ -1,3 +1,5 @@
+"""LLMCord"""
+
 import pickle
 import os
 import logging
@@ -6,6 +8,8 @@ CONTEXT_FILE = "context.pkl"
 
 
 class ContextError(Exception):
+    """Represents an error that can occur while loading the context"""
+
     def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(self.message)

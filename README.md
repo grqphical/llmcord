@@ -115,6 +115,10 @@ Look in the plugins folder for examples of custom clients
 
 - Changed `/list` to now show every model on a different line
 
+## Running the test suite
+
+Make sure to install both `requirements.txt` and `requirements.tests.txt`. Then run `pytest` to run the tests.
+
 ## Roadmap
 
 I may or may not add these features later on so feel free to make a PR and implement these features.

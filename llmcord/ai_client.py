@@ -1,3 +1,5 @@
+"""LLMCord"""
+
 from plugins import BaseClient
 from .config import Config
 from .context import Context
@@ -19,13 +21,13 @@ async def send_query(
         bool: Whether or not the request succeeded
     """
     model_data, base_url, token, client = config.get_model_params(model)
-    if model_data == None:
+    if model_data is None:
         return (
             f"ERROR: Model '{model}' not found. Make sure you have defined it in 'llmcord.toml'",
             False,
         )
 
-    if client == None:
+    if client is None:
         return "ERROR: No client has been configured for this model", False
 
     client = BaseClient.plugins[client]

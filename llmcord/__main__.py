@@ -1,6 +1,8 @@
+"""LLMCord"""
+
+import os
 import discord
 from discord.ext import commands
-import os
 from dotenv import load_dotenv
 from .config import Config
 from .context import Context
@@ -26,10 +28,11 @@ if config.system_prompt is None:
 
 @bot.event
 async def on_ready():
+    """Runs when the bot is ready and connected to Discord"""
     await bot.add_cog(LLMCommands(bot, config, context))
     await bot.add_cog(GeneralCommands(bot, config, context))
     await bot.tree.sync()
-    logger.info(f"Logged in as {bot.user}")
+    logger.info("Logged in as %s", bot.user)
 
 
 bot.run(os.getenv("DISCORD_TOKEN"), log_handler=None)
