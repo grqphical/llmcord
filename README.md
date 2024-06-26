@@ -10,7 +10,7 @@ This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Dis
 
 ## Installation
 
-1. Clone this repo
+1. Clone this repo or download the source code from one of the [Releases](https://github.com/grqphical/llmcord/releases)
 
 ```bash
 $ git clone https://github.com/grqphical/LLMCord.git
