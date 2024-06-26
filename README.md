@@ -1,6 +1,7 @@
 <p align="center">
     <img src="https://github.com/grqphical/llmcord/blob/main/llmcord_logo.png" width="256" height="256"/>
 </p>
+
 [![Pytest](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml/badge.svg)](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml)
 
 # LLMCord - An LLM client as a discord bot
