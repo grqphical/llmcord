@@ -97,6 +97,16 @@ Look in the plugins folder for examples of custom clients
 
 ## Changelog
 
+### 1.2.2
+
+- Moved commands into their own Cogs
+
+- Added unit tests for Config and Context
+
+- Fixed linting errors
+
+- Added CI for unit tests
+
 ### 1.2.1
 
 - Fixed error handling with certain edge cases when loading the configuration
