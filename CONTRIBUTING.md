@@ -18,6 +18,8 @@ If you have a support problem create an issue with the `support` tag
 
 - Keep feature versions as small as possible, preferably one new feature per version.
 
+- Include tests for any new code. Anything related to discord.py such as new commands does not need to be tested
+
 - Be welcoming to newcomers and encourage diverse new contributors from all backgrounds. See the [Python Community Code of Conduct](https://www.python.org/psf/codeofconduct/).
 
 ## First contributions
@@ -44,32 +46,23 @@ If you are asked to "rebase" your PR, they're saying that a lot of code has chan
 
 ## Supported Versions
 
-I will always support the latest commit and the previous two versions of LLMCord
+I will always support the latest commit and the previous two minor versions of LLMCord
 
 | Version       | Supported          |
 | ------------- | ------------------ |
 | latest commit | :white_check_mark: |
+| 1.2.2         | :white_check_mark: |
 | 1.2.1         | :white_check_mark: |
 | 1.2.0         | :white_check_mark: |
-| 1.1.0         | :x:                |
+| 1.1.0         | :white_check_mark: |
 | 1.0.0         | :x:                |
 
-Open an issue with the tag `bug` and make sure to include
+Open an issue with the tag `bug` and make sure to include:
 
-## Version 1.x.x or Commit HASH
+- Version number or commit hash
 
-## Description
+- Description of bug
 
-DESCRIPTION HERE
+- Any screenshots/videos of the bug
 
-## Screenshots/Videos
-
-SCREENSHOTS/MEDIA HERE
-
-## Reproduction Steps
-
-REPRODUCTION STEPS HERE
-
-## Possible Fixes
-
-POSSIBLE FIXES
+- Any potential causes/fixes
