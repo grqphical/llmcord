@@ -3,6 +3,7 @@
 import tomllib
 import logging
 import os
+from sys import exit
 
 CONFIG_FILE = "llmcord.toml"
 
