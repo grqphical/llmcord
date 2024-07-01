@@ -10,6 +10,12 @@ This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Dis
 
 ## Installation
 
+### Using pre-created executables
+
+Download the executable for the latest release from [Releases](https://github.com/grqphical/llmcord/releases)
+
+### Manual
+
 1. Clone this repo or download the source code from one of the [Releases](https://github.com/grqphical/llmcord/releases)
 
 ```bash
@@ -35,12 +41,6 @@ $ ./venv/Scripts/activate
 ```bash
 $ pip install -r requirements.txt
 ```
-
-### Why no executable to download?
-
-I tried to compile these Python scripts into an executable however it wouldn't work. If anyone can get one working please create an issue with the method you used.
-
-Not having an executable also ensures that it works across all platforms without needing me to compile versions for every platform.
 
 ## Usage
 
@@ -96,6 +96,12 @@ the `get_response` method. Make sure it is a coroutine. In order to access the A
 Look in the plugins folder for examples of custom clients
 
 ## Changelog
+
+### 1.2.3
+
+- Refactored code to work with Pyinstaller
+
+- Pre built executables are now able to be distrubuted
 
 ### 1.2.2
 
