@@ -4,3 +4,4 @@ venv
 *.toml
 *.pkl
 .pytest_cache
+output/
