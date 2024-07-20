@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-I will always support the latest commit and the previous two versions
+I will always support the latest commit and the previous minor version
 
 | Version       | Supported          |
 | ------------- | ------------------ |
