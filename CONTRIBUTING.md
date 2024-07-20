@@ -51,6 +51,7 @@ I will always support the latest commit and the previous minor version of LLMCor
 | Version       | Supported          |
 | ------------- | ------------------ |
 | latest commit | :white_check_mark: |
+| 1.2.3         | :white_check_mark: |
 | 1.2.2         | :white_check_mark: |
 | 1.2.1         | :white_check_mark: |
 | 1.2.0         | :white_check_mark: |
