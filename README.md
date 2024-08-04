@@ -117,6 +117,8 @@ Look in the plugins folder for examples of custom clients
 
 - Improved Documentation
 
+- Added build scripts
+
 ### 1.2.3
 
 - Refactored code to work with Pyinstaller
