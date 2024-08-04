@@ -44,6 +44,10 @@ $ ./venv/Scripts/activate
 $ pip install -r requirements.txt
 ```
 
+### Converting to binary
+
+If you want to convert the script into a binary run wither the `build.sh` or `build.bat` files. **NOTE** this requires you to have installed pyinstaller.
+
 ## Usage
 
 1. Create a new Discord Application at the Discord Developer Portal and configure it to be a bot. (Guide [Here](https://discordpy.readthedocs.io/en/stable/discord.html))
