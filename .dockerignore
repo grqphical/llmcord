@@ -2,10 +2,19 @@ venv
 
 README.md
 SECURITY.md
+CONTRIBUTING.md
 llmcord_logo.png
 
-__pycache__/
-*.pyc
-*.pyo
+\_\_pycache\_\_
+_.pyc
+_.pyo
 
 Dockerfile
+.github
+.git
+output/
+llmcord_logo.ico
+build.bat
+build.sh
+requirements.tests.txt
+\*.pkl
