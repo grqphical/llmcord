@@ -46,7 +46,7 @@ $ pip install -r requirements.txt
 
 ### Converting to binary
 
-If you want to convert the script into a binary run wither the `build.sh` or `build.bat` files. **NOTE** this requires you to have installed pyinstaller.
+If you want to convert the script into a binary run either the `build.sh` or `build.bat` files. **NOTE** this requires you to have installed pyinstaller.
 
 ## Usage
 
