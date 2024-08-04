@@ -16,3 +16,7 @@ class GeneralCommands(commands.Cog):
     async def reload_config(self, interaction: discord.Interaction):
         self.config = Config()
         await interaction.response.send_message(embed=info_embed("Reloaded config"))
+
+    @app_commands.command(name="about", description="Print information about the bot")
+    async def about(self, interaction: discord.Interaction):
+        await interaction.response.send_message(embed=about_embed())

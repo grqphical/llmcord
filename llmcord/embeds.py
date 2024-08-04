@@ -1,6 +1,6 @@
 """LLMCord"""
 import discord
-
+from llmcord import __version__
 
 def ai_response_embed(model_name: str, response: str):
     embed = discord.Embed(
@@ -55,4 +55,12 @@ def two_result_embed(response1: str, response2: str, model1: str, model2: str):
     embed.add_field(name=model1, value=response1, inline=True)
     embed.add_field(name=model2, value=response2, inline=True)
 
+    return embed
+
+def about_embed():
+    embed = discord.Embed(title="About LLMCord", color=discord.Color.blue())
+    embed.set_thumbnail(url="https://raw.githubusercontent.com/grqphical/llmcord/main/llmcord_logo.png")
+    embed.add_field(name="Version", value=f"{__version__}", inline=False)
+    embed.add_field(name="Author", value="grqphical", inline=False)
+    embed.add_field(name="Repo", value="https://github.com/grqphical/llmcord", inline=False)
     return embed
