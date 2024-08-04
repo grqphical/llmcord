@@ -101,3 +101,45 @@ class LLMCommands(commands.Cog):
             await interaction.response.send_message(
                 embed=view.get_current_page(), view=view
             )
+
+    @app_commands.command(
+        name="compare", description="Compare the responses of two LLMs"
+    )
+    @app_commands.describe(model1="Choose a LLM")
+    @app_commands.autocomplete(model1=model_autocomplete)
+    @app_commands.describe(model2="Choose a LLM")
+    @app_commands.autocomplete(model2=model_autocomplete)
+    async def side_by_side(
+        self, interaction: discord.Interaction, query: str, model1: str, model2: str
+    ):
+        await interaction.response.defer()
+
+        # First model response
+        response1, ok = await send_query(
+            model1, query, self.config, self.context, interaction.channel_id
+        )
+        if not ok:
+            logger.error(f"Failed to send query to {model1}")
+            await interaction.followup.send(embed=error_embed(response1))
+            return
+
+        self.context.add_context_message(query, "user", interaction.channel_id)
+        self.context.add_context_message(response1, "assistant", interaction.channel_id)
+        logger.info(f"Sent query to {model1}")
+
+        # Second model response
+        response2, ok = await send_query(
+            model1, query, self.config, self.context, interaction.channel_id
+        )
+        if not ok:
+            logger.error(f"Failed to send query to {model2}")
+            await interaction.followup.send(embed=error_embed(response2))
+            return
+
+        self.context.add_context_message(query, "user", interaction.channel_id)
+        self.context.add_context_message(response2, "assistant", interaction.channel_id)
+        logger.info(f"Sent query to {model2}")
+
+        await interaction.followup.send(
+            embed=two_result_embed(response1, response2, model1, model2)
+        )

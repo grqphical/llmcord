@@ -48,3 +48,11 @@ def context_list_embed(context: list[dict], page_num: int):
     for msg in context:
         embed.add_field(name=msg["role"], value=msg["content"], inline=False)
     return embed
+
+def two_result_embed(response1: str, response2: str, model1: str, model2: str):
+    embed = discord.Embed(title="Responses", color=discord.Color.blue())
+
+    embed.add_field(name=model1, value=response1, inline=True)
+    embed.add_field(name=model2, value=response2, inline=True)
+
+    return embed
