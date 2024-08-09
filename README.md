@@ -14,7 +14,7 @@ This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Dis
 
 Download the executable for the latest release from [Releases](https://github.com/grqphical/llmcord/releases)
 
-**NOTE:** Currently MacOS and Linux are not supported
+**NOTE:** Currently MacOS and Linux do not have pre built binaries
 
 ### Manual
 
