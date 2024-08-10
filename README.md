@@ -174,7 +174,7 @@ Make sure to install both `requirements.txt` and `requirements.tests.txt`. Then 
 
 ## Roadmap
 
-I may or may not add these features later on so feel free to make a PR and implement these features.
+I may or may not add these features later on.
 
 - [x] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
 
