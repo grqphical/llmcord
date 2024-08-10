@@ -63,4 +63,5 @@ def about_embed():
     embed.add_field(name="Version", value=f"{__version__}", inline=False)
     embed.add_field(name="Author", value="grqphical", inline=False)
     embed.add_field(name="Repo", value="https://github.com/grqphical/llmcord", inline=False)
+    embed.add_field(name="License", value="[Mozilla Public License 2.0](https://github.com/grqphical/llmcord/blob/main/LICENSE)", inline=False)
     return embed

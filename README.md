@@ -109,6 +109,12 @@ Look in the plugins folder for examples of custom clients
 
 ## Changelog
 
+### 1.3.1
+
+- Changed license from MIT to Mozilla Public License 2.0
+
+- Added license to about section of bot
+
 ### 1.3.0
 
 - Added compare command that allows you to send a response to two LLM's and compare their responses
@@ -171,4 +177,4 @@ I may or may not add these features later on so feel free to make a PR and imple
 
 ## License
 
-LLMCord is licensed under the MIT License
+LLMCord is licensed under the [Mozilla Public License 2.0](https://github.com/grqphical/llmcord/blob/main/LICENSE)
