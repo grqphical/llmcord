@@ -46,7 +46,7 @@ $ pip install -r requirements.txt
 
 ### Converting to binary
 
-If you want to convert the script into a binary run either the `build.sh` or `build.bat` files. **NOTE** this requires you to have installed pyinstaller.
+If you want to convert the script into a binary run `pyinstaller llmcord.spec`
 
 ## Usage
 
@@ -114,6 +114,10 @@ Look in the plugins folder for examples of custom clients
 - Changed license from MIT to Mozilla Public License 2.0
 
 - Added license to about section of bot
+
+- Bump aiohttp from 3.9.5 to 3.10.2 by @dependabot in https://github.com/grqphical/llmcord/pull/3
+
+- Added PyInstaller spec
 
 ### 1.3.0
 
