@@ -33,6 +33,7 @@ def main():
         await bot.add_cog(LLMCommands(bot, config, context))
         await bot.add_cog(GeneralCommands(bot, config, context))
         await bot.tree.sync()
+        await bot.change_presence(activity=discord.Game(name="with different LLMs"))
         logger.info("Logged in as %s", bot.user)
 
     bot.run(os.getenv("DISCORD_TOKEN"), log_handler=None)
