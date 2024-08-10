@@ -2,7 +2,10 @@
     <img src="https://github.com/grqphical/llmcord/blob/main/llmcord_logo.png" width="256" height="256"/>
 </p>
 
-[![Pytest](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml/badge.svg)](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml)
+[![Python Tests](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml/badge.svg)](https://github.com/grqphical/llmcord/actions/workflows/python-test.yml)
+[![License](https://img.shields.io/github/license/grqphical/llmcord)](https://img.shields.io/github/license/grqphical/llmcord)
+[![Version](https://img.shields.io/github/v/release/grqphical/llmcord)](https://img.shields.io/github/v/release/grqphical/llmcord)
+[![Size](https://img.shields.io/github/repo-size/grqphical/llmcord)](https://img.shields.io/github/repo-size/grqphical/llmcord)
 
 # LLMCord - An LLM client as a discord bot
 
