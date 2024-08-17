@@ -70,12 +70,6 @@ client = "OpenAIClient"
 
 **NOTE** I am using Groq AI here as an example so I have selected the `OpenAIClient` due to it's API being compatible with OpenAI however LLMCord also includes a Google Gemini 1.5 client that you can use as `GeminiClient`
 
-Then finally run:
-
-```bash
-$ python3 -m llmcord
-```
-
 ### Explanation of config
 
 `system_prompt` - Allows you to control the system prompt of the AI
