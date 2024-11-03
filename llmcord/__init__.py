@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 from .config import Config
 from .context import Context
-from .logger import logger
+from .logger import ASCII_LOGO, END, YELLOW, logger
 from .ai_client import send_query
 from .embeds import *
 from .views import *
@@ -177,6 +177,7 @@ async def about(interaction):
 
 
 def main():
+
     if config.default_model is None:
         logger.critical("No default model configured")
         exit(1)
