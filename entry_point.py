@@ -1,3 +1,5 @@
 """Entry point for PyInstaller to create an executable"""
 
-import llmcord
+from llmcord import main
+
+main()
