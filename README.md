@@ -48,6 +48,10 @@ $ ./venv/Scripts/activate
 $ pip install -r requirements.txt
 ```
 
+### Viewing detailed logs
+
+If you want to view more detailed logs in order to debug issues, in your `.ENV` file add the line `APP_ENV=dev`
+
 ### Converting to binary
 
 If you want to convert the script into a binary run `pyinstaller llmcord.spec`
