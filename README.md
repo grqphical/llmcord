@@ -9,7 +9,9 @@
 
 # LLMCord - An LLM client as a discord bot
 
-This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Discord
+This bot allows you to use LLMs such as ChatGPT, LLaMA3, and Gemini 1.5 from Discord.
+
+You are also able to use models such as LLama 3.2 Vision however image generation is not supported (yet!)
 
 ## Installation
 
@@ -85,7 +87,7 @@ $ python3 -m llmcord
 For each model you wish to make create it as a seperate table with a display name. In this case I chose `llama3-70b`.
 `base_url` - Base URL for the API **REQUIRED**
 
-`model` - Which model to use **REQUIRED**
+`model` - Which model to use. Only letters, numbers, underscores and dashses are valid characters here **REQUIRED**
 
 `token` - API token for API, **REQUIRED IF NEEDED BY API**
 
@@ -111,6 +113,16 @@ the `get_response` method. Make sure it is a coroutine. In order to access the A
 Look in the plugins folder for examples of custom clients
 
 ## Changelog
+
+### 1.4.0
+
+- Added file upload support for models with vision capabilities
+
+- Moved away from cogs API, will rework later on
+
+- Updated discord.py
+
+- Added the ability to see more detailed log if you set APP_ENV equal to 'dev'
 
 ### 1.3.1
 
@@ -170,7 +182,7 @@ Look in the plugins folder for examples of custom clients
 
 ## Running the test suite
 
-Make sure to install both `requirements.txt` and `requirements.tests.txt`. Then run `pytest` to run the tests.
+Make sure to install `requirements.txt` then run `pytest` to run the tests.
 
 ## Roadmap
 
@@ -178,7 +190,7 @@ I may or may not add these features later on.
 
 - [x] Custom API Handlers (ability to define your own plugins to work with non-OpenAI compatible APIs)
 
-- [ ] File uploads
+- [x] File uploads
 
 - [ ] Integration with non LLM's (eg. DALL-E for image generation)
 
