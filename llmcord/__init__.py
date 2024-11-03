@@ -189,6 +189,3 @@ def main():
         bot.run(os.getenv("DISCORD_TOKEN"))
     else:
         bot.run(os.getenv("DISCORD_TOKEN"), log_handler=None)
-
-
-main()
