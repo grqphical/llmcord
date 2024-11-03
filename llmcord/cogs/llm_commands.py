@@ -5,7 +5,7 @@ from ..ai_client import send_query
 from ..embeds import *
 from ..config import Config
 from ..context import Context
-from ..logging import logger
+from ..logger import logger
 from ..views import *
 
 
@@ -38,17 +38,26 @@ class LLMCommands(commands.Cog):
 
     @app_commands.command(
         name="ask",
-        description="Ask a LLM a query. Uses the models you have defined in your llmcord.toml file",
+        description="Ask a LLM a query. Uses the models you have defined in your llmcord.toml file. You can also optionally attach an image if the LLM supports it",
     )
-    @app_commands.describe(model="Choose a LLM")
+    @app_commands.describe(
+        model="Choose a LLM", file="Upload an image (if the model supports it)"
+    )
     @app_commands.autocomplete(model=model_autocomplete)
     async def ask(
-        self, interaction: discord.Interaction, query: str, model: str = None
+        self,
+        interaction: discord.Interaction,
+        query: str,
+        model: str = None,
+        file: discord.Attachment = None,
     ):
         model = model or self.config.default_model
         await interaction.response.defer()
+
+        file_url = file.url if file else None
+
         response, ok = await send_query(
-            model, query, self.config, self.context, interaction.channel_id
+            model, query, file_url, self.config, self.context, interaction.channel_id
         )
         if not ok:
             logger.error(f"Failed to send query to {model}")

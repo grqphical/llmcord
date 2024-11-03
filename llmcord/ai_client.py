@@ -6,7 +6,12 @@ from .context import Context
 
 
 async def send_query(
-    model: str, query: str, config: Config, context: Context, channel_id: str
+    model: str,
+    query: str,
+    file_url: str,
+    config: Config,
+    context: Context,
+    channel_id: str,
 ) -> tuple[str, bool]:
     """
     Sends a query to the AI model for completion and returns the AI's response.
@@ -37,6 +42,7 @@ async def send_query(
         base_url,
         token,
         config.system_prompt,
+        file_url,
         context.get_context(channel_id),
     )
     return response, ok

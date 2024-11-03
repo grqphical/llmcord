@@ -11,6 +11,7 @@ class GeminiClient(BaseClient):
         base_url: str,
         token: str,
         system_prompt: str,
+        file_url: str,
         context: list[dict],
     ):
         url = base_url + f"v1beta/models/{model}:generateContent"

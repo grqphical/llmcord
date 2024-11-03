@@ -13,15 +13,24 @@ class OpenAIClient(BaseClient):
         base_url: str,
         token: str,
         system_prompt: str,
+        file_url: str,
         context: list[dict],
     ) -> tuple[str, bool]:
         url = base_url + "v1/chat/completions"
         async with aiohttp.ClientSession(json_serialize=json.dumps) as session:
+            current_message = {"role": "user", "content": query}
+
+            if file_url:
+                current_message["content"] = [
+                    {"type": "text", "text": query},
+                    {"type": "image_url", "image_url": {"url": file_url}},
+                ]
+
             messages = [
                 {"role": "system", "content": system_prompt},
             ]
             messages += context
-            messages += [{"role": "user", "content": query}]
+            messages += current_message
 
             async with session.post(
                 url,

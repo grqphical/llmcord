@@ -18,6 +18,7 @@ class BaseClient:
         base_url: str,
         token: str,
         system_prompt: str,
+        file_url: str,
         context: list[dict],
     ) -> tuple[str, bool]:
         """Fetches the LLM's response. Returns a tuple containing the response text and a boolean indicating if the request was successful.
