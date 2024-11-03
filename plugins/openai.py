@@ -13,6 +13,7 @@ class OpenAIClient(BaseClient):
         base_url: str,
         token: str,
         system_prompt: str,
+        file_url: str,
         context: list[dict],
     ) -> tuple[str, bool]:
         url = base_url + "v1/chat/completions"
@@ -21,7 +22,18 @@ class OpenAIClient(BaseClient):
                 {"role": "system", "content": system_prompt},
             ]
             messages += context
-            messages += [{"role": "user", "content": query}]
+            current_message = {"role": "user", "content": query}
+
+            # if an image was passed in we need to change the format of the request
+            if file_url is not None:
+                current_message["content"] = [
+                    {"type": "text", "text": query},
+                    {"type": "image_url", "image_url": {"url": file_url}},
+                ]
+
+                messages = [current_message, {"role": "assistant", "content": ""}]
+            else:
+                messages.append(current_message)
 
             async with session.post(
                 url,
