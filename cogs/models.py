@@ -25,6 +25,7 @@ class ConfigError(Exception):
 class Model:
     id: str
     owned_by: str
+    provider: str
     context_window: int
 
 
@@ -79,7 +80,7 @@ class Models(commands.Cog):
 
         for model in models:
             self.models[model["id"]] = Model(
-                model["id"], model["owned_by"], model["context_window"]
+                model["id"], model["owned_by"], provider_name, model["context_window"]
             )
 
 
