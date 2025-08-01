@@ -59,6 +59,9 @@ class Models(commands.Cog):
         for name, provider in providers.items():
             self.get_models_from_provider(provider["base_url"], name, provider["token"])
 
+        if data.get("default_model", None) == None:
+            self.default_model = self.models.keys()[0]
+
     def get_models_from_provider(
         self, provider_url: str, provider_name: str, provider_token: str
     ):
